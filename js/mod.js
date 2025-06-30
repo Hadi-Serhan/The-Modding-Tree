@@ -1,6 +1,7 @@
 let modInfo = {
-	name: "The ??? Tree",
-	author: "nobody",
+	id: "mining_tree",
+	name: "The mining tree",
+	author: "Xenno",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
 
@@ -41,7 +42,16 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
+	gain = new Decimal(0)
+	if (hasUpgrade("o", 11)){
+		gain = gain.add(upgradeEffect("o", 11))
+	}
+	if (hasUpgrade("o", 12)){
+		gain = gain.add(upgradeEffect("o", 12))
+	}
+	if (hasUpgrade("o", 13)){
+		gain = gain.mul(upgradeEffect("o", 13))
+	}
 	return gain
 }
 
